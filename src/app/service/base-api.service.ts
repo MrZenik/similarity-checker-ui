@@ -7,7 +7,7 @@ import { SessionStorageService } from "../security/session-storage.service";
   providedIn: 'root'
 })
 export class BaseApiService {
-  private readonly baseUrl: string = "http://localhost:8080";
+  private readonly baseUrl: string = "https://code-similarity-api.herokuapp.com";
 
   constructor(private http: HttpClient,
               private sessionStorageService: SessionStorageService) {
