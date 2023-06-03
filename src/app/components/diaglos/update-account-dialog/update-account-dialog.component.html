@@ -1,0 +1,40 @@
+<div class="align-center">
+  <h2>Update user data</h2>
+  <form [formGroup]="updateUserForm" (ngSubmit)="update(updateUserForm.value)">
+    <mat-form-field appearance="outline">
+      <mat-label>Firstname</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Lastname</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Old password</mat-label>
+      <input matInput formControlName="oldPassword" type="password">
+      <mat-hint>Enter here your current password. If you don't want to update it just left it empty</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>New password</mat-label>
+      <input matInput formControlName="newPassword" type="password">
+      <mat-hint>Password should contains at least 8 symbols</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Repeat new password</mat-label>
+      <input matInput formControlName="newPasswordRepeat" type="password">
+    </mat-form-field>
+    <mat-error
+      *ngIf="updateUserForm.hasError('passwordMismatch') && (updateUserForm.get('newPasswordRepeat')?.dirty || updateUserForm.get('newPasswordRepeat')?.touched)"
+      class="passwordError">
+      Passwords do not match
+    </mat-error>
+    <div class="btn-div">
+      <button mat-flat-button color="primary" type="submit" [disabled]="!updateUserForm.valid" class="update-btn">
+        Update
+      </button>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+</div>

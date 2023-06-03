@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="subjects">
+    <p class="title">Your subjects</p>
+
+    <div *ngIf="subjects.length != 0; else noData">
+      <mat-grid-list cols="1" rowHeight="70" *ngFor="let subject of subjects">
+        <mat-grid-tile class="subject">
+
+          <mat-grid-tile-header class="subject-info">
+            {{subject.name}}
+            <span class="fill-remaining-space"></span>
+            <div class="buttons">
+              <button mat-flat-button color="primary" (click)="openFileUploadDialog(subject)">
+                Add new work
+              </button>
+              <button mat-flat-button color="primary" (click)="showUserDirectories(subject)">
+                Show files
+              </button>
+            </div>
+          </mat-grid-tile-header>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="img">
+      <img src="/assets/no-data.jpg" alt="NO DATA" width="300">
+    </div>
+  </ng-template>
+
+</div>

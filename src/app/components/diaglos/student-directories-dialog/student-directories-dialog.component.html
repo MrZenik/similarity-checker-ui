@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Files</h2>
+<div mat-dialog-content class="scrollable">
+  <directory-list [directory]="directory" *ngIf="directory; else noData"/>
+  <ng-template #noData>
+    <div class="img">
+      <img src="/assets/no-data.jpg" alt="NO DATA" width="500">
+    </div>
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true">Ok</button>
+</div>

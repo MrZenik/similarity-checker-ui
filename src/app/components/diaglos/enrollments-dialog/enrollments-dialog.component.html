@@ -1,0 +1,28 @@
+<p class="title">Add or remove students</p>
+<div class="container">
+  <mat-form-field class="search">
+    <mat-icon matPrefix class="my-icon">search</mat-icon>
+    <input type="text" placeholder="Search" matInput [formControl]="searchControl" [matAutocomplete]="auto"
+           class="input">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+      <mat-option *ngFor="let student of filteredStudents | async" [value]="student.id">
+        {{ student.email }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <ul class="users">
+    <p class="users-title">Enrolled students:</p>
+    <li *ngFor="let student of enrolledStudents" class="email">
+      <mat-icon>person</mat-icon>
+      {{student.firstName + " " + student.lastName}} ({{student.email}})
+      <mat-icon (click)="removeOption(student.email)" class="delete-btn">delete_forever</mat-icon>
+    </li>
+  </ul>
+
+  <mat-hint>If you remove student from this list he will be deleted from subject</mat-hint>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-button color="primary" [disabled]="!isAbleToEnroll" (click)="enroll()">Enroll</button>
+</div>

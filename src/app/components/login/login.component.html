@@ -1,0 +1,24 @@
+<div class="align-center">
+  <div *ngIf="error" class="error">
+    <mat-icon>error</mat-icon> <p>{{error}}</p>
+  </div>
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password">
+    </mat-form-field>
+    <div class="btn-div">
+      <button mat-flat-button color="primary" type="submit" [disabled]="!loginForm.valid" class="login-btn">
+        Login
+      </button>
+    </div>
+  </form>
+  <div class="register">
+    <p>Do not have an account?</p> <a mat-button color="primary" href="/register">Register</a>
+  </div>
+</div>

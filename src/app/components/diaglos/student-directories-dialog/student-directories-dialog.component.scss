@@ -1,0 +1,13 @@
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.scrollable {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 0.5em;
+}

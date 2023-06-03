@@ -1,0 +1,43 @@
+.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  width: 1400px;
+}
+
+.btn-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-div .request-btn {
+  width: 15rem;
+  padding: 6px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+.request {
+  display: flex;
+  align-items: baseline;
+}
+
+

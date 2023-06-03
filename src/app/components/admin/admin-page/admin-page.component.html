@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="users">
+    <p class="title">Admin control panel: User requests</p>
+
+    <div *ngIf="users.length != 0; else noData">
+      <mat-grid-list cols="1" rowHeight="55px" *ngFor="let user of users">
+        <mat-grid-tile class="user">
+          <mat-grid-tile-header class="user-info">
+            {{user.firstName + " " + user.lastName}} <br> {{user.email}}
+            <span class="fill-remaining-space"></span>
+            <div class="buttons">
+              <button mat-flat-button color="primary" (click)="approve(user)">
+                Approve & Give Teacher status
+              </button>
+              <button mat-flat-button color="accent" (click)="setStudentRole(user)">
+                Give Student status
+              </button>
+              <button mat-flat-button color="warn" (click)="delete(user)">
+                Reject & Delete account
+              </button>
+            </div>
+          </mat-grid-tile-header>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+  <ng-template #noData>
+    <div class="img">
+      <img src="/assets/no-data.jpg" alt="NO DATA" width="300">
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,61 @@
+.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 98%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  gap: 5px;
+}
+
+.input {
+  width: 300px;
+}
+
+.btn-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-div .register-btn {
+  width: 15rem;
+  padding: 6px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+.register {
+  display: flex;
+  align-items: baseline;
+}
+
+.passwordError {
+  margin-top: -25px;
+  margin-bottom: 5px;
+}
+
+.error {
+  color: red;
+  display: flex;
+  font-size: 20px;
+  line-height: 25px;
+  flex-wrap: wrap;
+}
+
+.message {
+  color: green;
+  display: flex;
+  font-size: 20px;
+  line-height: 25px;
+  flex-wrap: wrap;
+}

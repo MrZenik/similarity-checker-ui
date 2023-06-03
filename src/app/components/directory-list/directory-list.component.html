@@ -1,0 +1,17 @@
+<ul>
+  <li>
+    <span class="foldername">
+      <mat-icon>folder</mat-icon>
+      {{directory?.name}}:
+    </span>
+    <ul>
+      <li *ngFor="let file of directory?.files" class="filename">
+        <mat-icon> insert_drive_file</mat-icon>
+        <span>{{file}}</span>
+      </li>
+      <li *ngFor="let subdirectory of directory?.subdirectories">
+        <directory-list [directory]="subdirectory"></directory-list>
+      </li>
+    </ul>
+  </li>
+</ul>

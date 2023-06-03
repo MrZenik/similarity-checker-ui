@@ -1,0 +1,43 @@
+<div *ngFor="let item of studentStatistics">
+  <mat-expansion-panel class="panel">
+    <mat-expansion-panel-header>
+      File: {{item.file1}}
+    </mat-expansion-panel-header>
+
+    <table mat-table [dataSource]="item.pairs">
+      <ng-container matColumnDef="file2">
+        <mat-header-cell *matHeaderCellDef>Similar to file</mat-header-cell>
+        <mat-cell *matCellDef="let row" (click)="getFilesSimilarPairById(row.id)">
+          <span class="link">{{row.file2}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="similarityScore">
+        <mat-header-cell *matHeaderCellDef>Score</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{(row.similarityScore * 100).toFixed(2)}}%</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="['file2', 'similarityScore']"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: ['file2', 'similarityScore']"></mat-row>
+    </table>
+
+  </mat-expansion-panel>
+</div>
+
+<div *ngIf="pair">
+  <h2>Selected files similarity: {{(pair.similarityScore * 100).toFixed(2)}}%</h2>
+  <mat-expansion-panel class="code-panel">
+    <mat-expansion-panel-header>
+      <span class="code-panel-header">Show files similarity</span>
+    </mat-expansion-panel-header>
+    <div class="code-container">
+      <div class="code1">
+        <h2>{{pair.file1}}</h2>
+        <span [innerHTML]="pair.code1 | lineBreaksToHtml"></span>
+      </div>
+      <div class="code2">
+        <h2>{{pair.file2}}</h2>
+        <span [innerHTML]="pair.code2 | lineBreaksToHtml"></span>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</div>

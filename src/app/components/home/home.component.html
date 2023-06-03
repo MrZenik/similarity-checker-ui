@@ -1,0 +1,10 @@
+<navbar />
+<div *ngIf="isAdmin">
+  <admin-page />
+</div>
+<div *ngIf="isTeacher">
+  <teacher-subjects />
+</div>
+<div *ngIf="isStudent">
+  <student-page />
+</div>

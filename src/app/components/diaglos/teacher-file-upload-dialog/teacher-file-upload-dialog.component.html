@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Upload File for</h2>
+<div mat-dialog-content class="center">
+  <form (ngSubmit)="onSubmit()" [formGroup]="pathForm">
+    <mat-form-field appearance="outline"  class="path-input">
+      <mat-label>Path</mat-label>
+      <input matInput formControlName="path">
+      <mat-hint>For example: path/to/folder/<br>
+        If folder does not exist it will be created automatically<br>
+        Do no enter name of your personal folder ({{userFolderName}})
+      </mat-hint>
+    </mat-form-field>
+    <button type="button" mat-flat-button color="primary" (click)="fileInput.click()">Choose File</button>
+    <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file">
+    <div *ngIf="selectedFile">{{ selectedFile.name }}</div>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-button color="primary" [disabled]="!selectedFile || !!errorMessage || !pathForm.valid"
+          (click)="onSubmit()">Upload
+  </button>
+</div>

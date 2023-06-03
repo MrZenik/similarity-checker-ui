@@ -1,0 +1,23 @@
+<ul>
+  <li>
+    <span class="foldername">
+      <mat-icon (click)="delete(path ? path + '/' : path, true)" class="delete">delete</mat-icon>
+      <mat-icon (click)="download(path ? path + '/' : path, true)" class="download-folder"
+                *ngIf="directory?.subdirectories || directory?.files">save_alt</mat-icon>
+      <mat-icon>folder</mat-icon>
+      {{directory?.name}}:
+    </span>
+    <ul>
+      <li *ngFor="let file of directory?.files" class="filename">
+        <mat-icon> insert_drive_file</mat-icon>
+        <span>{{file}}</span>
+        <mat-icon (click)="download(path + '/' + file)" class="download-file">save_alt</mat-icon>
+        <mat-icon (click)="delete(path + '/' + file)" class="delete">delete</mat-icon>
+      </li>
+      <li *ngFor="let subdirectory of directory?.subdirectories">
+        <directory-list-actions [directory]="subdirectory"
+                                [path]="(path ? path + '/' : path) + subdirectory?.name" (updateDirectory)="emitUpdate()"></directory-list-actions>
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,55 @@
+<navbar/>
+<div class="container">
+  <div class="header">
+    <p class="title">{{subject?.name}}
+      <span class="fill-remaining-space"></span>
+      <mat-icon class="edit" (click)="updatedSubject(subject!)">edit</mat-icon>
+      <mat-icon class="delete" (click)="delete(subject!)">delete_forever</mat-icon>
+    </p>
+  </div>
+
+  <mat-expansion-panel class="panel" *ngIf="toShowFiles">
+    <mat-expansion-panel-header>
+      Subject files
+    </mat-expansion-panel-header>
+    <directory-list [directory]="directory"/>
+  </mat-expansion-panel>
+
+  <div class="students">
+    <mat-form-field>
+      <mat-label>Select student</mat-label>
+      <mat-select (selectionChange)="getFilesSimilarityPairForUser($event)">
+        <mat-option *ngFor="let student of enrolledStudents" [value]="student.email">
+          {{student.firstName + " " + student.lastName + "(" + student.email + ")"}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="fill-remaining-space"></span>
+    <div class="buttons">
+      <button mat-flat-button color="primary" (click)="openStudentsDialog(subject!)">
+        Enroll students
+      </button>
+      <button mat-flat-button color="primary" (click)="openPlagiarismRequestDialog()">
+        Create plagiarism check request
+      </button>
+    </div>
+  </div>
+  <div *ngIf="currentStudentEmail && studentStatistic.length != 0; else noData;">
+    <div *ngIf="studentDirectory && (studentDirectory.files?.length != 0 || studentDirectory?.subdirectories?.length != 0)">
+      <mat-expansion-panel class="panel">
+        <mat-expansion-panel-header>
+          Student files
+        </mat-expansion-panel-header>
+        <directory-list [directory]="studentDirectory"/>
+      </mat-expansion-panel>
+    </div>
+    <h1>Student statistic:</h1>
+    <student-statistics [studentStatistics]="studentStatistic"/>
+  </div>
+  <ng-template #noData>
+    <div class="img" *ngIf="currentStudentEmail">
+      <img src="/assets/no-data.jpg" alt="NO DATA" width="300">
+      <h2>No statistic for this student</h2>
+    </div>
+  </ng-template>
+</div>

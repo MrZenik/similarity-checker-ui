@@ -1,0 +1,54 @@
+<div class="align-center">
+  <div *ngIf="message" class="message">
+    <mat-icon>check_circle</mat-icon> <p>{{message}}</p>
+  </div>
+  <div *ngIf="error" class="error">
+    <mat-icon>error</mat-icon> <p>{{error}}</p>
+  </div>
+  <h2>Register</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+    <mat-form-field appearance="outline">
+      <mat-label>Firstname</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Lastname</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" class="input">
+      <mat-hint>You will not be able to change email later</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password">
+      <mat-hint>Password should contains at least 8 symbols</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Repeat password</mat-label>
+      <input matInput formControlName="passwordRepeat" type="password">
+    </mat-form-field>
+    <mat-error
+      *ngIf="registerForm.hasError('passwordMismatch') && (registerForm.get('passwordRepeat')?.dirty || registerForm.get('passwordRepeat')?.touched)"
+      class="passwordError">
+      Passwords do not match
+    </mat-error>
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="roleName">
+        <mat-option value="ROLE_STUDENT">Student</mat-option>
+        <mat-option value="ROLE_TEACHER">Teacher</mat-option>
+      </mat-select>
+      <mat-hint>For Teacher status you will need administrator approve</mat-hint>
+    </mat-form-field>
+    <div class="btn-div">
+      <button mat-flat-button color="primary" type="submit" [disabled]="!registerForm.valid" class="register-btn">
+        Register
+      </button>
+    </div>
+  </form>
+  <div class="register">
+    <p>Do you already have an account?</p> <a mat-button color="primary" href="/login">Login</a>
+  </div>
+</div>

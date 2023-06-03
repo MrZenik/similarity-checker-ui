@@ -1,0 +1,19 @@
+<navbar />
+<div class="container">
+  <div class="files">
+    <p class="title">Your files
+      <span class="add" (click)="openUploadDialog()"><mat-icon>note_add</mat-icon>Upload</span>
+      <span class="fill-remaining-space"></span>
+      <button mat-flat-button color="primary" (click)="openPlagiarismRequestDialog()">Create plagiarism check request</button>
+    </p>
+    <mat-hint>Contains all your uploaded files and files attached to your subjects by students in appropriate
+      directory
+    </mat-hint>
+    <directory-list-actions [directory]="directory" *ngIf="directory; else noData" (updateDirectory)="getAllFiles()"/>
+  </div>
+  <ng-template #noData>
+    <div class="img">
+      <img src="/assets/no-data.jpg" alt="NO DATA" width="300">
+    </div>
+  </ng-template>
+</div>

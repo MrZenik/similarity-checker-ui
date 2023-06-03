@@ -1,0 +1,71 @@
+<div class="align-center">
+  <h2>Request a plagiarism check</h2>
+  <form [formGroup]="requestForm" (ngSubmit)="onSubmit(requestForm.value)">
+
+    <mat-form-field class="input">
+      <mat-label>Test Directory</mat-label>
+      <mat-select formControlName="testDirectories" required>
+        <mat-option *ngFor="let path of directoryPaths" [value]="path">
+          {{ path }}
+        </mat-option>
+      </mat-select>
+      <mat-hint>First directory to check</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Reference Directory</mat-label>
+      <mat-select formControlName="refDirectories" required>
+        <mat-option *ngFor="let path of directoryPaths" [value]="path">
+          {{ path }}
+        </mat-option>
+      </mat-select>
+      <mat-hint>Second directory to check</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <input matInput type="text" id="reportOutput" formControlName="reportOutput" placeholder="Report Output"
+             required>
+      <mat-error *ngIf="requestForm.get('reportOutput')?.hasError('required')">Report Output is required</mat-error>
+      <mat-hint>Report name. It will be automatically created at /report directory</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <input matInput type="number" min="10" step="1" id="noiseThreshold" formControlName="noiseThreshold"
+             placeholder="Noise Threshold">
+      <mat-hint>The smallest sequence of matching characters between two files which should be considered plagiarism. Default 25
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <input matInput type="number" min="10" step="1" id="guaranteeThreshold" formControlName="guaranteeThreshold"
+             placeholder="Guarantee Threshold">
+      <mat-hint>The smallest sequence of matching characters between two files for which the system is guaranteed to detect a match. Default 25
+      </mat-hint>
+      <mat-error *ngIf="requestForm.get('guaranteeThreshold')?.hasError('invalidThreshold')">
+        Guarantee Threshold must be greater than or equal to Noise Threshold
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <input matInput type="number" min="0.01" max="0.99" step="0.01" id="displayThreshold"
+             formControlName="displayThreshold"
+             placeholder="Display Threshold">
+      <mat-hint>Consider level of similarity between files as plagiarism. Default 33%(0.33)</mat-hint>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="removeImports">Remove Imports (Imports will be removed before check)</mat-checkbox>
+
+    <mat-checkbox formControlName="skipPunctuation">Skip Punctuation (Punctuation will be removed before check)
+    </mat-checkbox>
+
+<!--    <mat-checkbox formControlName="truncate">Truncate (Skip inserting non-plagiarised code in report)</mat-checkbox>-->
+
+    <mat-checkbox formControlName="disableFilter">Disable Filter (Check only like text)</mat-checkbox>
+
+    <div class="btn-div">
+      <button mat-flat-button color="primary" type="submit" [disabled]="!requestForm.valid" class="request-btn">
+        Request
+      </button>
+    </div>
+  </form>
+</div>

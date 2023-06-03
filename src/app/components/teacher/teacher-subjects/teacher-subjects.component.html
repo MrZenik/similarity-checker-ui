@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="subjects">
+    <p class="title">
+      Subject you are managing
+      <button mat-flat-button color="primary" (click)="createNewSubject()">
+        <mat-icon>add_box</mat-icon> Add new subject
+      </button>
+    </p>
+    <div *ngIf="subjects.length != 0; else noData">
+      <mat-grid-list cols="1" rowHeight="70" *ngFor="let subject of subjects">
+        <mat-grid-tile class="subject">
+
+          <mat-grid-tile-header class="subject-info">
+            <span (click)="navigateToSubject(subject.id)" class="subject-link">{{subject.name}}</span>
+            <span class="fill-remaining-space"></span>
+            <div class="buttons">
+              <button mat-flat-button color="primary" (click)="showSubjectFiles(subject)">
+                Show files
+              </button>
+              <button mat-flat-button color="accent" (click)="updatedSubject(subject)">
+                Edit subject
+              </button>
+              <button mat-flat-button color="warn" (click)="delete(subject)">
+                <mat-icon>delete_forever</mat-icon> Delete subject
+              </button>
+            </div>
+          </mat-grid-tile-header>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="img">
+      <img src="/assets/no-data.jpg" alt="NO DATA" width="300">
+    </div>
+  </ng-template>
+
+</div>

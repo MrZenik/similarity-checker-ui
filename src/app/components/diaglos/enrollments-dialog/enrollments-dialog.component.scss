@@ -1,0 +1,41 @@
+.container {
+  padding: 20px;
+}
+
+.users {
+  width: 740px;
+  list-style-type: none;
+  font-size: 15px;
+  margin: 10px 0 0 0;
+
+  .users-title {
+    font-size: 18px;
+    margin: 0 0 0 -40px;
+  }
+}
+
+.input {
+  width: 650px;
+}
+
+.title {
+  padding-left: 20px;
+  padding-top: 20px;
+  font-size: 18px;
+}
+
+.search {
+  width: 700px;
+}
+
+.email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 0;
+}
+
+.delete-btn {
+  color: red;
+  cursor: pointer;
+}

@@ -1,0 +1,19 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  color: red;
+}
+
+form {
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.path-input {
+  margin-bottom: 50px;
+}
